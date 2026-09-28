@@ -41,6 +41,18 @@ runs:
           --store-password-in-clear-text
       shell: bash
 
+    - name: Ensure github-Official-EwE NuGet source
+      run: |
+        if dotnet nuget list source | grep -q "github-Official-EwE"; then
+          dotnet nuget remove source github-Official-EwE
+        fi
+        dotnet nuget add source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" \
+          --name "github-Official-EwE" \
+          --username ${{ github.repository_owner }} \
+          --password ${{ github.token }} \
+          --store-password-in-clear-text
+      shell: bash
+
     - name: Ensure BSR NuGet source
       if: ${{ inputs.bsr-token != '' }}
       run: |
