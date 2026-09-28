@@ -76,9 +76,9 @@ runs:
         if dotnet nuget list source | grep -q "github-Official-EwE"; then
           dotnet nuget remove source github-Official-EwE
         fi
-        dotnet nuget add source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" \
+        dotnet nuget add source "https://nuget.pkg.github.com/Official-EwE/index.json" \
           --name "github-Official-EwE" \
-          --username ${{ github.repository_owner }} \
+          --username "github" \
           --password ${{ github.token }} \
           --store-password-in-clear-text
       shell: bash
