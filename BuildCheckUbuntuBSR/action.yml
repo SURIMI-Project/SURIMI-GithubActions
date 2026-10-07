@@ -13,6 +13,10 @@ inputs:
     description: 'BSR_TOKEN for authentication with BSR NuGet source'
     required: false
     default: ''
+  run-tests:
+    description: 'Run the unit tests of the solution after building'
+    required: false
+    default: 'false'
 
 runs:
   using: "composite"
@@ -74,6 +78,10 @@ runs:
       run: dotnet build ${{ inputs.solution-file }} --configuration Release --no-restore
       shell: bash
    
+    - name: Run unit tests
+      if: ${{ inputs.run-tests == 'true' }}
+      run: dotnet test ${{ inputs.solution-file }} --configuration Release --no-build
+      shell: bash
 
 
 
