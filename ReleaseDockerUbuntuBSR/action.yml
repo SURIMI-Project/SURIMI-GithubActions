@@ -13,9 +13,8 @@ inputs:
     required: false
     default: ${{ github.token }}
   dockerfile:
-    description: 'Path to the Dockerfile'
-    required: false
-    default: './SURIMI-Ecopath/Dockerfile'
+    description: 'Path to the Dockerfile (for example ./SURIMI-Ecopath/Dockerfile)'
+    required: true
   context:
     description: 'Docker build context'
     required: false
